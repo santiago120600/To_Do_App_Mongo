@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react';
 import Todo from './Todo';
 
 const List = ({list}) => {
-    const renderedList = list.map((item)=> <Todo title={item.title} completed={item.completed} key={item.title}/>);
+   const renderedList = list.map((item, idx)=> <Todo title={item.title} completed={item.completed} key={idx}/>);
    return(
         <Grid textAlign="center">
            {renderedList}
