@@ -1,11 +1,49 @@
-import React from 'react';
-import { Button, Grid, Icon } from 'semantic-ui-react';
+import React, {useState} from 'react';
+import { Button, Grid, Icon, Input } from 'semantic-ui-react';
 
-const Todo = () => {
+const Todo = ({title}) => {
+    const [isEditing, setIsEditing] = useState(false);
+    const [value, setValue] = useState(title);
+    const [tempValue, setTempValue] = useState(title);
+
+    const handleDivDoubleClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleInputKeyDown = (e) =>{
+        const key = e.keyCode;
+
+        if(key == 13){
+            //Enter key 
+            setValue(tempValue); 
+            setIsEditing(false);
+        }else if(key == 27){
+            //Esc key
+            setTempValue(value); 
+            setIsEditing(false);
+        }
+    }
+
+    const handleInputOnChange = (e) => {
+        setTempValue(e.target.value);        
+    };
+
     return(
-           <Grid.Row>
+            isEditing ?
+           <Grid.Row onDoubleClick={handleDivDoubleClick}>
+            <Grid.Column width={7}>
+                <Input fluid 
+                    onChange={handleInputOnChange}    
+                    onKeyDown={handleInputKeyDown}
+                    autoFocus={true}
+                    value={tempValue}
+                /> 
+            </Grid.Column>
+           </Grid.Row>
+            :
+           <Grid.Row onDoubleClick={handleDivDoubleClick}>
             <Grid.Column width={5}>
-                <h2>Test</h2>
+                <h2>{value}</h2>
             </Grid.Column>
             <Grid.Column width={1}>
                <Button circular icon positive>

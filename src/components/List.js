@@ -5,7 +5,7 @@ import Todo from './Todo';
 const List = () => {
    return(
         <Grid textAlign="center">
-            <Todo/>
+            <Todo title="Test #1t"/>
         </Grid>
     ); 
 };
