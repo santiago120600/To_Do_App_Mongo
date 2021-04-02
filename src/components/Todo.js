@@ -30,11 +30,11 @@ const Todo = ({title,completed}) => {
     };
     
     const handleButtonClick = () =>{
-        setCompleted(true);
+        setCompleted((oldCompleted)=>!oldCompleted);
     };
 
     return(
-           <Grid.Row onDoubleClick={handleDivDoubleClick}>
+           <Grid.Row>
                 {
                 isEditing ?
                 <Grid.Column width={7}>
@@ -47,11 +47,12 @@ const Todo = ({title,completed}) => {
                 </Grid.Column>
             :
                <>     
-                <Grid.Column width={5}>
+                <Grid.Column width={5} onDoubleClick={handleDivDoubleClick}>
                     <Header as="h2" color={completedState ?  "green" : "black"}>{value}</Header>
                 </Grid.Column>
                 <Grid.Column width={1}>
-                   <Button circular icon positive
+                   <Button circular icon 
+                        color={completedState ? "blue" : "green"}
                         onClick={handleButtonClick}
                     >
                     <Icon name="check"/>
