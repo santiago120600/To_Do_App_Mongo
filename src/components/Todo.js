@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Grid, Icon, Input, Header } from 'semantic-ui-react';
 
-const Todo = ({title,completed, removeTodo}) => {
+const Todo = ({title,completed, removeTodo, editTodoItemProp}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(title);
     const [tempValue, setTempValue] = useState(title);
@@ -16,6 +16,7 @@ const Todo = ({title,completed, removeTodo}) => {
 
         if(key === 13){
             //Enter key 
+            editTodoItemProp({title:tempValue});
             setValue(tempValue); 
             setIsEditing(false);
         }else if(key === 27){
@@ -30,7 +31,11 @@ const Todo = ({title,completed, removeTodo}) => {
     };
     
     const handleButtonClick = () =>{
-        setCompleted((oldCompleted)=>!oldCompleted);
+        setCompleted((oldCompleted)=>{
+            const newState = !oldCompleted;
+            editTodoItemProp({completed: newState});
+            return newState;
+        });
     };
 
     return(
