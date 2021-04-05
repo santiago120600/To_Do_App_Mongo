@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
 import todos from './apis';
 
+import React, { useState, useEffect } from "react";
 import { Container } from 'semantic-ui-react'
 import Formulaire from './components/Form';
 import Section from './components/Section';
@@ -44,7 +44,7 @@ const App = () => {
             <Section>
                 <List
                     list={todoList}   
-                    removeTodo={removeTodo}
+                    removeTodoListProp={removeTodo}
                     editTodoListProp={editTodo}
                 />
             </Section>

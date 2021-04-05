@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Grid, Icon, Input, Header } from 'semantic-ui-react';
 
-const Todo = ({title,completed, removeTodo, editTodoItemProp}) => {
+const Todo = ({title,completed, removeTodoItemProp, editTodoItemProp}) => {
     const [isEditing, setIsEditing] = useState(false);
     const [value, setValue] = useState(title);
     const [tempValue, setTempValue] = useState(title);
@@ -65,7 +65,7 @@ const Todo = ({title,completed, removeTodo, editTodoItemProp}) => {
                 </Grid.Column>
                 <Grid.Column width={1}>
                    <Button circular icon negative
-                    onClick={removeTodo}
+                        onClick={removeTodoItemProp}
                     >
                     <Icon name="remove"/>
                    </Button>
